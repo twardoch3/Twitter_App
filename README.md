@@ -1,5 +1,5 @@
 # Warsztaty - Django Advanced Module - Twitter Application
-Application allows to send short messages (tweets) and comments beetwen users.
+Application allows to send short messages (tweets) and comments between users.
 
 ### Requirements
 Program requires PostgreSQL database and Django.
