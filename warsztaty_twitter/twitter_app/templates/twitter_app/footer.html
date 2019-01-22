@@ -9,7 +9,8 @@
         <a href="{% url 'logout' %}">logout</a>
     {% else %}
         <p>logout {{ request.user }}</p>
-        <a href="">login</a>
+        <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'login' %}">Login</a></button>
+
     {% endif %}
 
 </footer>
