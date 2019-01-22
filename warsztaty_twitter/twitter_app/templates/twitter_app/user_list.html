@@ -1,0 +1,36 @@
+{% extends 'twitter_app/base.html' %}
+{% block content %}
+    <h3>List of Users</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr class="bg-success text-white">
+            <th scope="col">User</th>
+            <th scope="col">Number of Tweets</th>
+            <th scope="col">Number of Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for u in object_list %}
+            <tr>
+                <td>
+                   <a href="{% url 'user_tweets' u.pk %}">{{u.username}}</a>
+                </td>
+                <td>
+                    {{ u.tweet_set.all.count }}
+                </td>
+                <td>
+                    {{ u.comment_set.all.count }}
+                </td>
+            </tr>
+
+
+        {% endfor %}
+
+        </tbody>
+
+
+    </table>
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'twitter_app/base.html' %}
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>{{ t }}</h2>
+    {% include 'twitter_app/form_template.html' %}
+    {% if request.user.is_authenticated %}
+        <br><p><a href="{% url 'change_user_password' %}">Change User Password</a></p>
+        <p><a href="{% url 'delete_user' request.user.pk %}">Delete Account</a></p>
+
+    {% endif %}
+
+{% endblock %}

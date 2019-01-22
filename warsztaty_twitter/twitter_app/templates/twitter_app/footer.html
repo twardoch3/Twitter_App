@@ -1,0 +1,15 @@
+<footer>
+    <br>
+    <strong>
+        Twitter app testing...
+    </strong>
+
+    {% if request.user.is_authenticated %}
+        <p>logged in as {{ request.user.username }} ({{request.user.email}})</p>
+        <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+        <p>logout {{ request.user }}</p>
+        <a href="">login</a>
+    {% endif %}
+
+</footer>

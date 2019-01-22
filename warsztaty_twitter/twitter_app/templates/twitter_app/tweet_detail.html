@@ -1,0 +1,38 @@
+{% extends 'twitter_app/base.html' %}
+{% block content %}
+
+    <h3>Tweet Details</h3>
+
+    <a href="{% url 'tweet_update' object.pk %}" class="list-group-item list-group-item-action"><span><font size="5">{{object}}</font></span>
+        <p>@{{object.user}} - {{object.creation_date}}</p>
+    </a>
+    <br>
+    <p>Comments:</p>
+
+    <ul class="list-group">
+    {% for c in comments %}
+        <li class="list-group-item">
+            {{c}}
+            {% if  c.user %}
+            <p>@{{c.user}} - {{c.creation_date}}</p>
+            {% else %}
+            <p>user deleted</p>
+            {% endif %}
+            {% if c.user == request.user %}
+            <a href="{% url 'delete_comment' c.pk %}">(delete)</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+
+    </ul>
+
+    <br>
+    <h5>Add comment</h5>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Comment</button>
+    </form>
+
+
+{% endblock %}

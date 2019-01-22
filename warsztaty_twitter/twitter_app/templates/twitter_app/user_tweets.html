@@ -1,0 +1,40 @@
+{% extends 'twitter_app/base.html' %}
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h3>All Tweets of {{ user.username }}</h3>
+        {% if object_list.1 == 'empty' %}
+            <p>no tweets!</p>
+        {% else %}
+            {% for t in object_list %}
+
+                    <a href="{% url 'tweet_detail' t.id %}" class="list-group-item list-group-item-action">
+
+                        <span><font size="5">{{t}}</font></span>
+                        <p> number of comments: {{ t.comment_set.all.count }}</p>
+                        <p>{{t.creation_date}}</p>
+                        </a><br>
+
+                    <br>
+            {% endfor %}
+        {% endif %}
+
+
+    {% if request.user != user %}
+        <h4>Send Message</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Send</button>
+        </form>
+
+    {% endif %}
+
+
+
+{% endblock %}

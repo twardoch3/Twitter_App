@@ -1,0 +1,13 @@
+{% extends 'twitter_app/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h5>{{ x }}</h5>
+    <h2>Login with email</h2>
+    {% include 'twitter_app/form_template.html' %}
+    <br>
+    <p><a href="{% url 'user' %}">add new user</a> </p>
+
+
+{% endblock %}
